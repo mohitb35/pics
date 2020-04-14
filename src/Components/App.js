@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
+import unsplash from '../api/unsplash';
 import SearchBar from './SearchBar';
 
 import './App.css'
@@ -29,15 +30,11 @@ class App extends React.Component {
 		}) */
 
 		// Using await async
-		const response = await axios
-			.get('https://api.unsplash.com/search/photos', {
-				params: {
-					query: term
-				},
-				headers: {
-					Authorization: 'Client-ID NcV8kR20uZg3pTZn0tNqqijNC36HNGxolDe0K9ywrgA'
-				}
-			});
+		const response = await unsplash.get('/search/photos', {
+			params: {
+				query: term
+			}
+		});
 		
 		this.setState({
 			images: response.data.results
