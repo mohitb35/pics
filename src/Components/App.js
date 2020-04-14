@@ -6,7 +6,12 @@ import SearchBar from './SearchBar';
 import './App.css'
 
 class App extends React.Component {
-	async onSearchSubmit(term) {
+	state = {
+		images: []
+	}
+
+	// Arrow function in order to preserve the "this" of the App object
+	onSearchSubmit = async (term) => {
 		// Using promise chain
 		/* axios.get('https://api.unsplash.com/search/photos', {
 			params: {
@@ -34,7 +39,9 @@ class App extends React.Component {
 				}
 			});
 		
-		console.log(response.data.results);
+		this.setState({
+			images: response.data.results
+		});
 	}
 
 
@@ -42,6 +49,7 @@ class App extends React.Component {
 		return (
 			<div className="ui container app">
 				<SearchBar onSubmit={this.onSearchSubmit}/>
+				Found: {this.state.images.length} images
 			</div>
 		)
 	}
