@@ -1,9 +1,13 @@
 import React from 'react';
 
+import ImageCard from './ImageCard';
+
+import './ImageList.css';
+
 function createGrid(imageArray) {
-	const gridArray = imageArray.map(({id, urls, alt_description}) => {
+	const gridArray = imageArray.map((image) => {
 		return (
-			<img key={id} src={urls.regular} alt={alt_description}/>
+			<ImageCard key={image.id} image={image} />
 		)
 	});
 
@@ -11,13 +15,13 @@ function createGrid(imageArray) {
 }
 
 const ImageList = (props) => {
-	console.log(props.images);
+	console.log("Images in API response:", props.images);
 	const images = createGrid(props.images);
 
-	console.log(images);
+	console.log("List of images:", images);
 
 	return (
-		<div>
+		<div className="image-list">
 			{images}
 		</div>
 	)
